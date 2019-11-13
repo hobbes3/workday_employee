@@ -1,0 +1,11 @@
+[indexes/workday]
+owner = skawasaki@splunk.com
+version = 8.0.0
+modtime = 1573002484.361945000
+
+[inputs/http%3A%2F%2Fworkday]
+access = read : [ admin ], write : [ admin ]
+export = none
+owner = skawasaki@splunk.com
+version = 8.0.0
+modtime = 1573631859.104430000

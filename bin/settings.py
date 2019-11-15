@@ -1,12 +1,12 @@
 # Optional variable for your convienence.
-DEBUG = False
+DEBUG = True
 
 # Number of threads to create for multiprocessing.
-THREADS = 8
+THREADS = 1
 # Sleep for a random seconds between SPLUNK_MIN and SLEEP_MAX (floating number) before a request call.
 # Set both SLEEP_ to 0 to disable sleeping.
-SPLUNK_MIN = 0.01
-SLEEP_MAX = 0.1
+SLEEP_MIN = 0
+SLEEP_MAX = 0
 # Set TEXT_TRUNCATE to 0 to log entire data on sending and receiving (not recommended).
 TEXT_TRUNCATE = 300
 
@@ -23,12 +23,12 @@ SPLUNK_HOME = "/opt/splunk"
 # Splunk or Cribl HEC info.
 HTTP_URL = "https://localhost:8088/services/collector"
 HTTP_HEADERS = {
-    "Authorization": "Splunk xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+    "Authorization": "Splunk 89e07dcb-1425-4175-843e-b12d41b9f50a"
 }
 
 # Set REST API specific variable like API keys and Splunk index below.
 
 # Workday REST API info.
-WORKDAY_USER = "xxxxxxxxxxxxxx"
-WORKDAY_PASS = "xxxxxxxxxxxxxx"
+WORKDAY_USER = "ISU_WD-Drive To Splunk_L&D"
+WORKDAY_PASS = "Welcome123()"
 WORKDAY_INDEX = "workday"

@@ -1,0 +1,9 @@
+# EXAMPLE ONLY.
+# Add the stanzas below to config.toml.
+
+[workday_api]
+url = "https://services1.myworkday.com/foo"
+user = "hobbes3"
+password = "hobbes3satoshi"
+  [workday_api.params]
+  format = "json"

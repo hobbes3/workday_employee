@@ -2,8 +2,10 @@
 # hobbes3
 
 import logging
+import json
+import splunk_rest.splunk_rest as sr
+from splunk_rest.splunk_rest import rest_wrapped
 from requests.auth import HTTPBasicAuth
-from splunk_rest.splunk_rest import session_id, config, script_args, retry_session, rest_wrapped
 
 @rest_wrapped
 def workday_rest_api():
@@ -20,10 +22,10 @@ def workday_rest_api():
 
         data = ""
         for employee in employees:
-            employee["__session_id"] = session_id
+            employee["__session_id"] = sr.session_id
 
             event = {
-                "index": WORKDAY_INDEX,
+                "index": sr.config["workday_api"]["index"],
                 "sourcetype": "workday_employee_json",
                 "source": __file__,
                 "event": employee,
@@ -32,17 +34,17 @@ def workday_rest_api():
             data += json.dumps(event)
 
         logger.info("Sending data to Splunk...")
-        s.post(HTTP_URL, headers=HTTP_HEADERS, data=data)
+        s.post(sr.config["hec"]["url"], headers=sr.config["hec"]["headers"], data=data)
 
 if __name__ == "__main__":
     logger = logging.getLogger("splunk_rest.splunk_rest")
-    s = retry_session()
+    s = sr.retry_session()
 
     workday_auth = HTTPBasicAuth(
-        config["workday_api"]["user"],
-        config["workday_api"]["password"],
+        sr.config["workday_api"]["user"],
+        sr.config["workday_api"]["password"],
     )
-    workday_url = config["workday_api"]["url"]
-    workday_params = config["workday_api"]["params"]
+    workday_url = sr.config["workday_api"]["url"]
+    workday_params = sr.config["workday_api"]["params"]
 
     workday_rest_api()
